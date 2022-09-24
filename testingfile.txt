@@ -1,0 +1,41 @@
+NoSQL Case Study Assessment
+•	Name: Pooja LV
+•	Login Id: KOCHCEAPB101
+Problem Statement:
+Tasks: 
+Task1:  Populate MongoDB Datastore 30 marks
+a.Identify mongo DB data model from csv file in terms of database, collections, documents  - 10 marks
+Database: pooja
+Collections: car
+Documents: mpg.csv
+
+ 
+ 
+b.Populate the above data to mongo DB datastore
+mongoimport -d pooja  -c car --type csv --file mpg.csv --headerline
+ 
+ 
+
+
+
+
+
+Task 2: Generate the Reports
+a.List the vehicles with all the fields which have the cylinders more than or equal to 5  
+db.car.find({$or: [{"cylinders":{$gt:5}},{"cylinders":{$eq:5}}]})
+ 
+db.car.find({"cylinders":{$gte:5}})
+ 
+
+b.List the vehicles with all the fields those have 18 miles per gallon (mpg) and weigh (weight) more than or equal to 3500
+db.car.find({$and: [{"mpg":{$eq:18}},{"weight":{$gte:3500}}]})
+ 
+
+
+c.Update the vehicles with acceleration to 8 those weighs more than or equal to 3500
+db.car.updateMany({"weight":{$gte:3500}},{$set:{"acceleration":8}})
+ 
+
+d.List the vehicles with the fields horsepower, displacement those have cylinders more than or equal to 4
+db.car.find({cylinders:{$gte:4}},{_id:0,horsepower:1,displacement:1})
+ 
